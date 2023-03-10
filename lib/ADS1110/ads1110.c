@@ -22,8 +22,7 @@ ADS1110_ReadAll(ADS1110_Handler_t *Handler, uint8_t *Data)
   return Handler->PlatformReceive(Handler->AddressI2C, Data, 3);
 }
 
-static int8_t
-ADS1110_ReadConfigurationRegister(ADS1110_Handler_t *Handler, uint8_t *Data)
+static int8_t ADS1110_ReadConfigurationRegister(ADS1110_Handler_t *Handler, uint8_t *Data)
 {
   uint8_t Buffer[3] = {0};
   int8_t RetVal = 0;
@@ -34,8 +33,7 @@ ADS1110_ReadConfigurationRegister(ADS1110_Handler_t *Handler, uint8_t *Data)
   return RetVal;
 }
 
-static int8_t
-ADS1110_WriteConfigurationRegister(ADS1110_Handler_t *Handler, uint8_t Data)
+static int8_t ADS1110_WriteConfigurationRegister(ADS1110_Handler_t *Handler, uint8_t Data)
 {
   return Handler->PlatformSend(Handler->AddressI2C, &Data, 1);
 }
@@ -49,8 +47,7 @@ ADS1110_DoCheckDataReady(ADS1110_Handler_t *Handler, uint8_t ConfigReg)
   return ADS1110_OK;
 }
 
-static void
-ADS1110_ConvSample(ADS1110_Handler_t *Handler, ADS1110_Sample_t *Sample)
+static void ADS1110_ConvSample(ADS1110_Handler_t *Handler, ADS1110_Sample_t *Sample)
 {
   float ResDiv = 0.0f;
   float Gain = 0.0f;
@@ -97,8 +94,7 @@ ADS1110_ConvSample(ADS1110_Handler_t *Handler, ADS1110_Sample_t *Sample)
 }
 
 /* public functions ---------------------------------------------------------------------------*/
-ADS1110_Result_t
-ADS1110_Init(ADS1110_Handler_t *Handler, ADS1110_Address_t Address)
+ADS1110_Result_t ADS1110_Init(ADS1110_Handler_t *Handler, ADS1110_Address_t Address)
 {
   if (!Handler->PlatformSend ||
       !Handler->PlatformReceive)
@@ -124,8 +120,7 @@ ADS1110_Init(ADS1110_Handler_t *Handler, ADS1110_Address_t Address)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_DeInit(ADS1110_Handler_t *Handler)
+ADS1110_Result_t ADS1110_DeInit(ADS1110_Handler_t *Handler)
 {
   if (Handler->PlatformDeInit)
   {
@@ -135,8 +130,7 @@ ADS1110_DeInit(ADS1110_Handler_t *Handler)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_GeneralCallReset(ADS1110_Handler_t *Handler)
+ADS1110_Result_t ADS1110_GeneralCallReset(ADS1110_Handler_t *Handler)
 {
   uint8_t CMD = 0x06;
 
@@ -145,8 +139,7 @@ ADS1110_GeneralCallReset(ADS1110_Handler_t *Handler)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_SetMode(ADS1110_Handler_t *Handler, ADS1110_Mode_t Mode)
+ADS1110_Result_t ADS1110_SetMode(ADS1110_Handler_t *Handler, ADS1110_Mode_t Mode)
 {
   uint8_t ConfigReg = 0;
 
@@ -176,8 +169,7 @@ ADS1110_SetMode(ADS1110_Handler_t *Handler, ADS1110_Mode_t Mode)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_SetGain(ADS1110_Handler_t *Handler, ADS1110_Gain_t Gain)
+ADS1110_Result_t ADS1110_SetGain(ADS1110_Handler_t *Handler, ADS1110_Gain_t Gain)
 {
   uint8_t ConfigReg = 0;
 
@@ -218,8 +210,7 @@ ADS1110_SetGain(ADS1110_Handler_t *Handler, ADS1110_Gain_t Gain)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_SetRate(ADS1110_Handler_t *Handler, ADS1110_Rate_t Rate)
+ADS1110_Result_t ADS1110_SetRate(ADS1110_Handler_t *Handler, ADS1110_Rate_t Rate)
 {
   uint8_t ConfigReg = 0;
 
@@ -260,8 +251,7 @@ ADS1110_SetRate(ADS1110_Handler_t *Handler, ADS1110_Rate_t Rate)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_StartConversion(ADS1110_Handler_t *Handler)
+ADS1110_Result_t ADS1110_StartConversion(ADS1110_Handler_t *Handler)
 {
   uint8_t ConfigReg = 0;
 
@@ -276,8 +266,7 @@ ADS1110_StartConversion(ADS1110_Handler_t *Handler)
   return ADS1110_OK;
 }
 
-ADS1110_Result_t
-ADS1110_CheckDataReady(ADS1110_Handler_t *Handler)
+ADS1110_Result_t ADS1110_CheckDataReady(ADS1110_Handler_t *Handler)
 {
   uint8_t ConfigReg = 0;
 
@@ -287,8 +276,7 @@ ADS1110_CheckDataReady(ADS1110_Handler_t *Handler)
   return ADS1110_DoCheckDataReady(Handler, ConfigReg);
 }
 
-ADS1110_Result_t
-ADS1110_ReadSample(ADS1110_Handler_t *Handler, ADS1110_Sample_t *Sample)
+ADS1110_Result_t ADS1110_ReadSample(ADS1110_Handler_t *Handler, ADS1110_Sample_t *Sample)
 {
   uint8_t Buffer[3] = {0};
 
